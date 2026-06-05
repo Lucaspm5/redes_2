@@ -32,14 +32,13 @@ stds_rudp   = [rudp_A_std,  rudp_B_std,  rudp_C_std]
 x       = np.arange(len(cenarios))
 largura = 0.35
 
-# ── Gráfico 1: Escala Logarítmica (todos visíveis) ──────────────────
 fig, ax = plt.subplots(figsize=(10, 6))
 ax.bar(x - largura/2, medias_tcp,  largura, yerr=stds_tcp,
        label='TCP',   color='steelblue', capsize=5)
 ax.bar(x + largura/2, medias_rudp, largura, yerr=stds_rudp,
        label='R-UDP', color='coral',     capsize=5)
 
-ax.set_yscale('log')   # ← escala log
+ax.set_yscale('log')   
 ax.set_xlabel('Cenário de Rede')
 ax.set_ylabel('Throughput (Mbps) — escala logarítmica')
 ax.set_title('TCP vs R-UDP — Throughput por Cenário (Escala Log)')
@@ -48,7 +47,6 @@ ax.set_xticklabels(cenarios)
 ax.legend()
 ax.grid(axis='y', linestyle='--', alpha=0.7, which='both')
 
-# anotar valores nas barras
 for i, (tv, rv) in enumerate(zip(medias_tcp, medias_rudp)):
     ax.text(i - largura/2, tv * 1.3, f'{tv:.2f}', ha='center', fontsize=8, color='navy')
     ax.text(i + largura/2, rv * 1.3, f'{rv:.4f}', ha='center', fontsize=8, color='darkred')
@@ -59,7 +57,6 @@ plt.savefig(saida1, dpi=150)
 print(f"\n✅ Gráfico log salvo em: {saida1}")
 plt.close()
 
-# ── Gráfico 2: Dois subplots separados (TCP em cima, R-UDP em baixo) ─
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
 
 ax1.bar(cenarios, medias_tcp, yerr=stds_tcp,
