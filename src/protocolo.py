@@ -12,10 +12,10 @@ def gerar_auth():
 # | seq_num (4 bytes) | ack_num (4 bytes) | flags (1 byte) |
 # | checksum (4 bytes) | auth_len (2 bytes) | auth (64 bytes) |
 # | data_len (4 bytes) |
-# Total fixo: 79 bytes de cabeçalho
+# Total fixo: 83 bytes de cabeçalho (79 sem data_len + 4 de data_len)
 
 HEADER_FORMAT = '!IIB I H 64s I'
-HEADER_SIZE   = struct.calcsize(HEADER_FORMAT)   # 79 bytes
+HEADER_SIZE   = struct.calcsize(HEADER_FORMAT)   
 
 FLAGS_DATA = 0x01
 FLAGS_ACK  = 0x02
