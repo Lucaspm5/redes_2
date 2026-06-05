@@ -7,7 +7,6 @@ BUFFER  = 4096
 TIMEOUT = 2.0
 ARQUIVO = '/app/arquivo_teste.bin'
 
-# Recebe o cenário como argumento: python3 rudp_client.py A
 CENARIO = sys.argv[1] if len(sys.argv) > 1 else 'X'
 LOG_CSV = f'/app/logs/rudp_cenario_{CENARIO}.csv'
 
